@@ -6,8 +6,8 @@ import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('electronAPI', {
     openMsgBox: (msg) => {
-        ipcRenderer.send('test-ipc', {
-            msg: msg
+        ipcRenderer.invoke('test-ipc', {
+            msg
         });
     }
 })

@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     async showMsg() {
-      // alert(this.selectId);
       await window.electronAPI.openMsgBox(this.selectId)
     }
   }

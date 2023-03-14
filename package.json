@@ -14,7 +14,10 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "eslint": "^8.36.0",
+    "vue": "^3.2.13",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -24,7 +27,6 @@
     "@vue/cli-service": "~5.0.0",
     "electron": "^13.0.0",
     "electron-devtools-installer": "^3.1.0",
-    "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "vue-cli-plugin-electron-builder": "~2.1.1"
   },
@@ -33,6 +35,9 @@
     "env": {
       "node": true
     },
+    "ignorePatterns": [
+      "*/**"
+    ],
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended"
