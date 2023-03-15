@@ -30,3 +30,10 @@ export function getAsJson() {
         count: store.count
     });
 }
+
+export async function commitConfig() {
+    await window.electronAPI.commitConfig({
+        address: store.address,
+        lights: lights
+    });
+}

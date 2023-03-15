@@ -1,26 +1,27 @@
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
 import { RouterView } from 'vue-router';
+import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    RouterView
-  }
+    RouterView,
+    HeaderComponent
+}
 }
 </script>
 
 <template>
-  <ul>
-    <li>
-      <RouterLink to="/">Connection</RouterLink>
-      <RouterLink to="/lights">Lights</RouterLink>
-      <RouterLink to="/midi">MIDI</RouterLink>
-    </li>
-  </ul>
-  <RouterView />
+  <HeaderComponent />
+  <div class="container">
+    <RouterView />
+  </div>
 </template>
 
 <style>
-
+.container {
+  position: absolute;
+  top: 25px;
+}
 </style>

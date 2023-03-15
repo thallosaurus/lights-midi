@@ -9,5 +9,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
         ipcRenderer.invoke('test-ipc', {
             msg
         });
+    },
+    commitConfig: (cfg) => {
+        ipcRenderer.invoke('commit-config', cfg);
+    },
+
+    quit: () => {
+        ipcRenderer.invoke('app-quit');
     }
 })
