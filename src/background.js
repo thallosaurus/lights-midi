@@ -4,6 +4,7 @@ import { app, protocol, BrowserWindow, ipcMain, dialog } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import path from 'path';
+import midiInput from './midi/input';
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -12,6 +13,7 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+midiInput.openMidiOut();
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
@@ -61,6 +63,10 @@ app.on('activate', () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
+
+  /*midiInput.on('message', (delta, msg) => {
+    console.log("electron", delta, msg)
+  })*/
 
   //Setup IPCs here
   ipcMain.handle('test-ipc', (data, msg) => {

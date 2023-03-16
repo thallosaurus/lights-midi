@@ -1731,6 +1731,11 @@
   resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz#1d12873a8e49567371f2a75fe3e7f7edca6662d8"
   integrity sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==
 
+"@types/webmidi@^2.0.6":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@types/webmidi/-/webmidi-2.0.7.tgz#db6bc2e5fbf2ece44265b0a4fafde6573acd5210"
+  integrity sha512-BMVefNAum/swSmQJdTbRWBuDPeWT7fHAZEzmtY6eBl1ObvkWVzh39VvAFC8v9n7Y5XoOpWmeYzyUUVfmpq3ggQ==
+
 "@types/ws@^8.5.1":
   version "8.5.4"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.5.4.tgz#bb10e36116d6e570dd943735f86c933c1587b8a5"
@@ -6409,6 +6414,18 @@ javascript-stringify@^2.0.1:
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
   integrity sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg==
 
+jazz-midi-electron@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jazz-midi-electron/-/jazz-midi-electron-2.0.0.tgz#c4b11c4439518c354b801092f1d6877770b50836"
+  integrity sha512-0hF28sBP6dhchP07c0sI0yXhL1lsxK83m0mXpEu4SjY1OkKWIUncJYmaQ/UVrdQFh9Lk1Ty11t0IWyMF6mUp+g==
+  dependencies:
+    jzz "^1.6.0"
+
+jazz-midi@^1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/jazz-midi/-/jazz-midi-1.7.9.tgz#ad564e85acf12414aec7ef7d879ad61a5d7f6896"
+  integrity sha512-c8c4BBgwxdsIr1iVm53nadCrtH7BUlnX3V95ciK/gbvXN/ndE5+POskBalXgqlc/r9p2XUbdLTrgrC6fou5p9w==
+
 jest-worker@^26.2.1:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-26.6.2.tgz#7f72cbc4d643c365e27b9fd775f9d0eaa9c7a8ed"
@@ -6591,6 +6608,14 @@ junk@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/junk/-/junk-3.1.0.tgz#31499098d902b7e98c5d9b9c80f43457a88abfa1"
   integrity sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ==
+
+jzz@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/jzz/-/jzz-1.6.0.tgz#0654a0440caac23091a014cea3bba95c2a501c88"
+  integrity sha512-fzGCiqdmEMddmK10FUxwUuQ95XnxN8ty/nmLZKmhvuqEyPLUqPMMw1Dy7fpN9B0+SkC5LW3Z6bxdhJHl4Y9NWA==
+  dependencies:
+    "@types/webmidi" "^2.0.6"
+    jazz-midi "^1.7.9"
 
 keyv@^3.0.0:
   version "3.1.0"
