@@ -4,6 +4,7 @@ const input = new midi.Input();
 
 //IT FUCKING WORKed... :(
 input.openVirtualPort("iobroker");
+input.ignoreTypes(false, false, false);
 
 input.on('message', (deltaTime, message) => {
     console.log(`m: ${message} d: ${deltaTime}`);

@@ -6,21 +6,30 @@ export let store = createStore({
             address: "",
             lights: [
 
-            ]
+            ],
+            assignments: {}
         }
     },
     mutations: {
         addLightId(state, payload) {
-            state.lights.push({
-                lightId: payload.lightId,
-                type: payload.type,
-                nativeType: payload.thingType,
-                role: payload.role
-            });
+            window.electronAPI.registerEndpoint(payload);
+            state.lights.push(payload);
             console.log(payload);
         },
+        deleteLightId(state, payload) {
+            //let index = state.lights.indexOf(payload);
+            let light = state.lights[payload];
+            //debugger;
+            window.electronAPI.removeEndpoint(light.lightId);
+            state.lights.splice(payload);
+        },
         setServerAddress(state, address) {
+            window.electronAPI.setServer(address);
             state.address = address;
+        },
+        assign(state, payload) {
+            state.assignments[payload.note] = payload.address;
+            window.electronAPI.assignToNote(payload);
         }
     }
 })

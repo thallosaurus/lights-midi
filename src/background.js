@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import path from 'path';
 import input from './midi/input.js';
+import { addEndpoint, sendToId, setServerAddress, removeEndpoint, assignEndpoint, send } from './midi/client.js';
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -67,23 +68,8 @@ app.on('ready', async () => {
     console.log("electron", delta, msg)
   })*/
 
-  //Setup IPCs here
-  ipcMain.handle('test-ipc', (data, msg) => {
-    console.log(msg);
-    dialog.showMessageBox({
-      message: msg.msg
-    });
-  });
-
-  ipcMain.handle('commit-config', (data, cfg) => {
-    console.log(cfg);
-  });
-
-  ipcMain.handle('app-quit', (data) => {
-    console.log('quit');
-    // quit();
-    app.quit();
-  })
+  registerIPC(app);
+  setupMidi();
 
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
@@ -111,4 +97,60 @@ if (isDevelopment) {
       app.quit()
     })
   }
+}
+
+function registerIPC(app) {
+    //Setup IPCs here
+    ipcMain.handle('test-ipc', (data, msg) => {
+      console.log(msg);
+      dialog.showMessageBox({
+        message: msg.msg
+      });
+    });
+  
+    ipcMain.handle('commit-config', (data, cfg) => {
+      console.log(cfg);
+    });
+  
+    ipcMain.handle('app-quit', (data) => {
+      console.log('quit');
+      // quit();
+      app.quit();
+    });
+  
+    ipcMain.handle('set-server-address', (event, address) => {
+      //write address to config here
+      console.log('set-server-address', address);
+      setServerAddress(address);
+    })
+    
+    ipcMain.handle('register-endpoint', (event, payload) => {
+      //add checked endpoint to endpoint register
+      console.log('register-endpoint', payload);
+      addEndpoint(payload);
+    });
+
+    ipcMain.handle('delete-endpoint', (event, endpointId) => {
+      //add checked endpoint to endpoint register
+      console.log('delete-endpoint', endpointId);
+      removeEndpoint(endpointId);
+    });
+
+    ipcMain.handle('assign-note', (event, payload) => {
+      //add checked endpoint to endpoint register
+      const { note, endpointId } = payload;
+
+      console.log('assign-note', note);
+      assignEndpoint(note, endpointId);
+      //removeEndpoint(endpointId);
+    });
+}
+
+function setupMidi() {
+  input.on('message', (delta, message) => {
+    //sendToId()
+    //decode message
+
+    send(message);
+  });
 }

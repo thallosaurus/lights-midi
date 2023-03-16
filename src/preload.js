@@ -15,5 +15,17 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
     quit: () => {
         ipcRenderer.invoke('app-quit');
+    },
+    registerEndpoint: (endpoint) => {
+        ipcRenderer.invoke('register-endpoint', endpoint);
+    },
+    removeEndpoint: (endpointId) => {
+        ipcRenderer.invoke('delete-endpoint', endpointId);
+    },
+    setServer: (address) => {
+        ipcRenderer.invoke('set-server-address', address);
+    },
+    assignToNote: (note) => {
+        ipcRenderer.invoke('assign-note', note);
     }
 })

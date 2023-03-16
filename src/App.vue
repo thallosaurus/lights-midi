@@ -13,8 +13,8 @@ export default {
 </script>
 
 <template>
-  <HeaderComponent />
   <div class="container">
+  <HeaderComponent />
     <RouterView />
   </div>
 </template>

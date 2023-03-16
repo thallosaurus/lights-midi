@@ -24,27 +24,24 @@ export default {
             ev.preventDefault();
             //query id here
             console.log(ev);
-            // let url = this.$store.state.address;
+            let url = this.$store.state.address;
             // alert(url);
-            /*let q = await fetch(`${url}/get/${this.newLightId}`);
+            let q = await fetch(`${url}/get/${this.newLightId}`);
             q.json().then(d => {
-                console.log(d);*/
-            let d = {
-                _id: this.newLightId,
-                common: {
-                    role: "boolean",
-                    type: "boolean"
-                },
-                type: "switch",
-            };
-            //on success, add id to light store
-            this.$store.commit("addLightId", {
-                lightId: d._id,
-                role: d.common.role,
-                type: d.type,
-                nativeType: d.common.type,
-            });
-            // })
+                console.log(d);
+                //tell main thread about Datapoint
+
+                //on success, add id to light store
+                this.$store.commit("addLightId", {
+                    lightId: d._id,
+                    role: d.common.role,
+                    type: d.type,
+                    nativeType: d.common.type,
+                });
+            })
+        },
+        deleteLight(ev) {
+            this.$store.commit("deleteLightId", ev.target.dataset.index);
         }
     },
     components: { DialogComponent }
@@ -82,6 +79,7 @@ function validateEndpointQuery(d) {
     <ul>
         <li v-for="(light, index) in this.lights" :key="index">
             {{ light.lightId }} - {{ light.nativeType }} - {{ light.role }}
+            <button type="button" @click="this.deleteLight" :data-index="index">Löschen</button>
         </li>
     </ul>
 

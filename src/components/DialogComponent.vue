@@ -12,14 +12,14 @@ export default {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">{{ title }}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" v-bind:data-bs-dismiss="id" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <slot>Modalcontent</slot>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-secondary" v-bind:data-bs-dismiss="id">Close</button>
+                        <button type="submit" class="btn btn-primary" >Save</button>
                     </div>
                 </div>
             </div>
