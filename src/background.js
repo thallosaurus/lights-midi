@@ -100,57 +100,67 @@ if (isDevelopment) {
 }
 
 function registerIPC(app) {
-    //Setup IPCs here
-    ipcMain.handle('test-ipc', (data, msg) => {
-      console.log(msg);
-      dialog.showMessageBox({
-        message: msg.msg
-      });
+  //Setup IPCs here
+  ipcMain.handle('test-ipc', (data, msg) => {
+    console.log(msg);
+    dialog.showMessageBox({
+      message: msg.msg
     });
-  
-    ipcMain.handle('commit-config', (data, cfg) => {
-      console.log(cfg);
-    });
-  
-    ipcMain.handle('app-quit', (data) => {
-      console.log('quit');
-      // quit();
-      app.quit();
-    });
-  
-    ipcMain.handle('set-server-address', (event, address) => {
-      //write address to config here
-      console.log('set-server-address', address);
-      setServerAddress(address);
-    })
-    
-    ipcMain.handle('register-endpoint', (event, payload) => {
-      //add checked endpoint to endpoint register
-      console.log('register-endpoint', payload);
-      addEndpoint(payload);
-    });
+  });
 
-    ipcMain.handle('delete-endpoint', (event, endpointId) => {
-      //add checked endpoint to endpoint register
-      console.log('delete-endpoint', endpointId);
-      removeEndpoint(endpointId);
-    });
+  ipcMain.handle('commit-config', (data, cfg) => {
+    console.log(cfg);
+  });
 
-    ipcMain.handle('assign-note', (event, payload) => {
-      //add checked endpoint to endpoint register
-      const { note, endpointId } = payload;
+  ipcMain.handle('app-quit', (data) => {
+    console.log('quit');
+    // quit();
+    app.quit();
+  });
 
-      console.log('assign-note', note);
-      assignEndpoint(note, endpointId);
-      //removeEndpoint(endpointId);
-    });
+  ipcMain.handle('set-server-address', (event, address) => {
+    //write address to config here
+    console.log('set-server-address', address);
+    setServerAddress(address);
+  })
+
+  ipcMain.handle('register-endpoint', (event, payload) => {
+    //add checked endpoint to endpoint register
+    console.log('register-endpoint', payload);
+    addEndpoint(payload);
+  });
+
+  ipcMain.handle('delete-endpoint', (event, endpointId) => {
+    //add checked endpoint to endpoint register
+    console.log('delete-endpoint', endpointId);
+    removeEndpoint(endpointId);
+  });
+
+  ipcMain.handle('assign-note', (event, payload) => {
+    //add checked endpoint to endpoint register
+    const { note, endpointId } = payload;
+
+    console.log('assign-note', note);
+    assignEndpoint(note, endpointId);
+    //removeEndpoint(endpointId);
+  });
 }
 
 function setupMidi() {
-  input.on('message', (delta, message) => {
-    //sendToId()
-    //decode message
+  /*win.webContents.once('dom-ready', () => {
+    win.webContents
+      .send('config', "i am the config")
+    /ipcMain.once('sum-reply', (event, sum) => {
+      doJobWithResult(sum)
+    })*
+  })*/
+//  win.loadURL(path.resolve(__dirname, 'test.html'))
 
-    send(message);
-  });
+
+input.on('message', (delta, message) => {
+  //sendToId()
+  //decode message
+
+  send(message);
+});
 }

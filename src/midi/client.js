@@ -9,7 +9,7 @@ const noteAssignments = new Map();
 const NOTE_ON = 9;
 const NOTE_OFF = 8;
 
-export function send(msg) {
+export function send(msg, app) {
     //console.log(msg);
     //decode message
     const cmd = (msg[0] & 0b11110000) >> 4;
