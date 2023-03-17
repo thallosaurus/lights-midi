@@ -1,12 +1,5 @@
 import { createStore } from 'vuex';
 
-
-/*ipcMain.on("config", function (event, data) {
-    console.log("received data", data)
-    alert("received data")
-});*/
-
-
 export let store = createStore({
     state() {
         return {
